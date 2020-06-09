@@ -5,19 +5,21 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.join(__dirname,'dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/'
     },
 
     devServer: {
         port: 5000,
         host: '0.0.0.0',
         open: true,
-        openPage: 'http://localhost:5000'
+        openPage: 'http://localhost:5000',
+        historyApiFallback: true
         //host: '192.168.0.24'
     },
 
     resolve: {
-        extensions: ['.js', 'jsx']
+        extensions: ['.js', '.jsx']
     },
 
     module: {
@@ -34,8 +36,8 @@ module.exports = {
                         loader: 'file-loader',
                         options: {
                             name: '[name].[ext]',
-                            outputPath: 'static/',
-                            useRelativePath: true
+                            outputPath: '',
+                            // useRelativePath: true
                         }
                     }
                 ]
@@ -45,16 +47,16 @@ module.exports = {
 
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html',
-            favicon: "./src/static/favicon.ico",
-            minify: {
-                collapseWhitespace: true,
-                removeComments: true,
-                removeRedundantAttributes: true,
-                removeScriptTypeAttributes: true,
-                removeStyleLinkTypeAttributes: true,
-                useShortDoctype: true
-            }
+            template: 'src/public/index.html',
+            favicon: "src/public/favicon.ico",
+            // minify: {
+            //     collapseWhitespace: true,
+            //     removeComments: true,
+            //     removeRedundantAttributes: true,
+            //     removeScriptTypeAttributes: true,
+            //     removeStyleLinkTypeAttributes: true,
+            //     useShortDoctype: true
+            // }
         }),
     ]
 }
